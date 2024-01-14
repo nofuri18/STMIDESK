@@ -1,0 +1,78 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>RAINDUSTRY</title>
+
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/datepicker3.css' %}" rel="stylesheet">
+    <link href="{% static 'css/bootstrap-table.css' %}" rel="stylesheet">
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+
+    <!--Icons-->
+    <script src="{% static 'js/lumino.glyphs.js' %}"></script>
+
+    <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/chart.min.js' %}"></script>
+    <script src="{% static 'js/chart-data.js' %}"></script>
+    <script src="{% static 'js/easypiechart.js' %}"></script>
+    <script src="{% static 'js/easypiechart-data.js' %}"></script>
+    <script src="{% static 'js/bootstrap-datepicker.js' %}"></script>
+
+    <script>
+        !function ($) {
+            $(document).on("click", "ul.nav li.parent > a > span.icon", function () {
+                $(this).find('em:first').toggleClass("glyphicon-minus");
+            });
+            $(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
+        }(window.jQuery);
+
+        $(window).on('resize', function () {
+            if ($(window).width() > 768) $('#sidebar-collapse').collapse('show');
+        });
+        $(window).on('resize', function () {
+            if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide');
+        });
+
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+            });
+        });
+    </script>
+
+</head>
+
+<body>
+    <!-- Your content goes here -->
+    {% include 'theme/header.html' %}
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            
+            <div id="sidebar" class="col-sm-3 col-md-2 sidebar">
+                {% include 'sidebar.html' %}
+            </div>
+
+            <!-- Content -->
+            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                <!-- Isi Konten Dinamis -->
+                {% block isi %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $('#sidebar-collapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+            });
+        });
+    </script>
+</body>
+
+</html>
